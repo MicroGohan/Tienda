@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      >
 
 <head>
     <title>TODO supply a title</title>
@@ -7,9 +9,15 @@
 </head>
 
 <body>
+    <header th:replace="layout/plantilla :: header"/>
+     <h2>Listado de Clientes</h2>
+     <hr>
+     <a th:href="@{/cliente/nuevo}">Nuevo cliente</a>
     <div>Bienvenido a Spring</div>
     <p th:text="Hola">Esto no se verá</p>
     <h2> [[${mensaje}]] </h2>
+    
+   
     <div th:if="${clientes !=null and !clientes.empty}">
         <table border="1">
             <thead>
@@ -26,6 +34,12 @@
                     <td>[[${cliente.apellidos}]]</td>
                     <td>[[${cliente.correo}]]</td>
                     <td>[[${cliente.telefono}]]</td>
+                    <td>
+                        <a th:href="@{/cliente/eliminar/}+${cliente.idCliente}">Eliminar</a>
+                        <a th:href="@{/cliente/modificar/}+${cliente.idCliente}">Modificar</a>
+                        
+                        </td>
+                    
                 </tr>
             </tbody>
         </table>
@@ -34,5 +48,5 @@
         No hay clientes que mostrar
     </div>
 </body>
-
+    <footer th:replace="layout/plantilla :: footer"/>
 </html>
